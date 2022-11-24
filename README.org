@@ -1,0 +1,54 @@
+* Timekeeper
+
+A time-keeper that attempts to work like my brain works, for good and ill.
+
+** Legal-style timekeeping? What?
+Lawyers bill for time spent, and lawyers are very expensive. As consequence,
+lawyers are also very good at accounting for where their time is spent, because
+they have to explain why their clients owe them several thousand dollars.
+
+This has produced two interesting quirks:
+
+1. Lawyers bill in 6 minute increments, at least in the US, to my understanding.
+   That meaning, six minutes, spent on one task, are a tenth of a billable hour.
+2. Time billed is less, sometimes a lot less, than time spent working.
+
+How granular this tracking is, and what constitutes a "task" that is
+individually tracked varies widely.
+
+My brain has caught on to the idea that divorcing "time spent planning" and
+"time spent executing" is definitely good, I can't execute for eight hours a day
+and wouldn't be able to bill for eight hours a day. So, we instead measure the
+time spent executing concrete tasks, and put a rough goal on that.
+
+On a good day, I aim for 2-3 billable hours per day. This excludes:
+
+- Time spent attending meetings.
+- Time spent doing admin stuff, reading emails, reading Slack (but notably, not
+  actively using Slack/Emails, if I'm writing to achieve some sort of goal that
+  is definitely billable time)
+- Time spent gearing up for actually working.
+
+** How to use it
+It's quite simple:
+
+#+begin_src sh
+tk start "Description of task goes here, whatever helps you remember"
+# time passes, you do the thing
+tk stop
+#+end_src
+
+That's it. The time spent is rolled up to the nearest 6 minute increment and
+included in reports. Identical task descriptions are rolled up into the same
+category.
+
+Once you want to see what you've spent your time on/how much billable time
+you've worked:
+
+#+begin_src sh
+# `breakdown` prints a table, sorted most-to-least time spent.
+tk breakdown
+# `log` is a chronological accounting of the day, how much billable time there
+# has been today.
+tk log
+#+end_src
